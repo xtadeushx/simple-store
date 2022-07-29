@@ -4,7 +4,7 @@ import './select.css'
 const Select = ({ options, onBlur, name, id, text, className= ''}) => {
     return (
       <>
-        <div className='selectWrapper'>
+        <div className='selectWrapper mb-20'>
             <label className='lable' htmlFor={id}>
               {text}
             </label>

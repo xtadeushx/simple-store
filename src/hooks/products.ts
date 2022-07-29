@@ -10,30 +10,38 @@ export const useProducts = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [currentCategory, setCurrentCategory] = useState('')
+  const [currentSort, setCurrentSort] = useState('')
+  const [currentLimit, setCurrentLimit] = useState(5)
 
    function addProduct(product: IProduct) {
     setProducts(prev => [...prev, product]);
   }
 
   const changeCategory = (data: string) => { setCurrentCategory(data) }
+  const changeSort = (data: string) => { setCurrentSort(data) }
+  const changeLimit = (data: number) => { setCurrentLimit(data) }
 
 const category =  currentCategory === ''? '': `/category/${currentCategory}`;
+const sort =  currentSort === ''? '': `?sort=${currentSort}`;
+const limit =  currentLimit === 0? '': `?limit=${currentLimit}`;
 
 
   useEffect(() => {
     fetchProducts();
-  }, [currentCategory]);
+  }, [currentCategory, currentSort, currentLimit]);
 
   const fetchProducts = async () => {
     setLoading(true);
     setError('');
 
     try {
-      let response = await axios.get<IProduct[]>(`${PRODUCT_URL}${category}?limit=5`);
+      let response = await axios.get<IProduct[]>(`${PRODUCT_URL}${category}${limit}${sort}`);
       let data = await response.data; 
-      setProducts([])
+      setTimeout(() => {
         setLoading(false);
         setProducts(data);
+      },2000)
+        
     } catch (e: unknown) {
       setLoading(false);
       const error = e as AxiosError;
@@ -42,5 +50,5 @@ const category =  currentCategory === ''? '': `/category/${currentCategory}`;
     }
   };
 
-  return { products, loading, error,addProduct, changeCategory };
+  return { products, loading, error,addProduct, changeCategory, changeSort, changeLimit};
 };

@@ -11,9 +11,9 @@ export const useCategories = () => {
 
    
 
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, []);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   const fetchProducts = async () => {
     setCategoriesLoading(true);
@@ -30,6 +30,6 @@ export const useCategories = () => {
       setCategoriesError(error.message);
     }
   };
-
+console.log(categories)
   return { categories, categoriesLoading, categoriesError};
 };

@@ -1,8 +1,8 @@
 import React from 'react'
-
+import './loader.css'
 const Loader = () => {
   return (
-    <p className="text-center">Loading...</p>
+    <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   )
 }
 
