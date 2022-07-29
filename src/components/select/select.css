@@ -1,0 +1,54 @@
+.select{
+    padding: 4px;
+    outline: none;
+    border: 2px solid #999;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.selectWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 62px;
+    left: 16px;
+  }
+  
+  
+  .lable {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 18px;
+    padding-left: 8px;
+    /* identical to box height, or 180% */
+  
+    color: #8c8c8c;
+    text-transform: uppercase;
+  }
+  .selector{
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+  
+    border: 2px solid #fff;
+  
+    color: #1d1d1d;
+    border-radius: 10px;
+  
+    width: 150px;
+    padding: 8px 14px 8px 10px;
+    outline: none;
+  }
+  
+  .selector:hover{
+    background: #ffffff;
+    border: 2px solid #fbe0dc;
+  }
+  
