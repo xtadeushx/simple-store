@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { FaStoreAlt } from 'react-icons/fa';
-
+import { BsFillPersonFill } from 'react-icons/bs';
+import { ModalContext } from './context/ModalContext';
 
 const Navigtion = () => {
+
+  const { modal, open, close } = useContext(ModalContext)
+
   return (
     <nav className="h-[50px] flex justify-between px-5 bg-gray-500 items-center text-white">
       <div className="flex items-center"> <FaStoreAlt />
-      <span className="font-bold ml-4">Simple store</span></div>
+      <Link to='/' className='mr-2'><span className="font-bold ml-4">Simple store</span></Link></div>
      
 
 
@@ -47,7 +51,7 @@ const Navigtion = () => {
           </svg>
           <span className="absolute top-2 right-[9.8rem] text-[10px] rounded-full border  px-1 bg-white text-gray-600">1</span>
         </Link>
-        <Link to='/' className='mr-2'>Products</Link>
+       <BsFillPersonFill className='text-[25px]' onClick={open}/>
         <Link to='/about'>About</Link>
       </span>
     </nav>

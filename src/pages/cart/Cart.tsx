@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 
-import CartItem from '../components/cartItem/CartItem';
+import CartItem from '../../components/cartItem/CartItem';
 import './cart.css'
 const Cart = () => {
     return (
