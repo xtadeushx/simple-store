@@ -1,11 +1,21 @@
-import React from 'react'
+import React from 'react';
+
 import { Link } from 'react-router-dom';
-
-
-
 import CartItem from '../../components/cartItem/CartItem';
+import { ICart } from '../../models';
+
 import './cart.css'
-const Cart = () => {
+interface CartProps{
+  cart: ICart[];
+}
+
+
+const Cart = ({cart}:CartProps) => {
+
+const totalSum = cart.map(el=> el.price).reduce((acc,prev) => acc + prev,0).toFixed(2);
+
+
+
     return (
         <>
           <div className="container container--cart">
@@ -85,25 +95,17 @@ const Cart = () => {
                 </div>
               </div>
               <div className="content__items">
-                <CartItem/>
-                <CartItem/>
-                <CartItem/>
-                <CartItem/>
-                <CartItem/>
-          
+                {cart.map(item =><CartItem key={item.id} title={item.title} image={item.image} price={item.price}/>)}
+                
+               
               </div>
               <div className="cart__bottom">
                 <div className="cart__bottom-details">
                   <span>
-                    {' '}
-                     Усього товарів: <b> 4 шт.</b>{' '}
+                     Усього товарів: <b> {cart.length} шт.</b>{' '}
                   </span>
                   <span>
-                    {' '}
-                    Сума замовлення:
-                    <b>
-                      100 $
-                    </b>{' '}
+                    Сума замовлення: <b> {totalSum} ₴</b>
                   </span>
                 </div>
                 <div className="cart__bottom-buttons">

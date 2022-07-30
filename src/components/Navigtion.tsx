@@ -3,11 +3,18 @@ import { Link } from 'react-router-dom'
 import { FaStoreAlt } from 'react-icons/fa';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { ModalContext } from './context/ModalContext';
+import { ICart } from '../models';
 
-const Navigtion = () => {
+interface NavigtionProps{
+  cart: ICart[];
+}
+
+
+const Navigtion = ({cart}:NavigtionProps) => {
+
+let cartLength = cart.length;
 
   const { modal, open, close } = useContext(ModalContext)
-
   return (
     <nav className="h-[50px] flex justify-between px-5 bg-gray-500 items-center text-white">
       <div className="flex items-center"> <FaStoreAlt />
@@ -18,8 +25,7 @@ const Navigtion = () => {
 
       <span className='flex justify-between w-[200px] items-center'>
         <Link to="/cart" className="flex items-center">
-          <span className="mr-2">0</span>
-          /
+         
           <svg
             className='ml-2 relative'
             width="24"
@@ -49,7 +55,7 @@ const Navigtion = () => {
               strokeLinejoin="round"
             />
           </svg>
-          <span className="absolute top-2 right-[9.8rem] text-[10px] rounded-full border  px-1 bg-white text-gray-600">1</span>
+          <span className="absolute top-2 right-[11.2rem] text-[10px] rounded-full border  px-1 bg-white text-gray-600">{cartLength}</span>
         </Link>
        <BsFillPersonFill className='text-[25px]' onClick={open}/>
         <Link to='/about'>About</Link>

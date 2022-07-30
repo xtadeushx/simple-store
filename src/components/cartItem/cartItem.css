@@ -83,9 +83,7 @@
   .cart__item-remove .button {
     border-color: gray;
   }
-  .cart__item-remove svg {
-    transform: rotate(45deg);
-  }
+ 
   .cart__item-remove svg path {
     fill: gray;
   }

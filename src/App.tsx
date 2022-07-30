@@ -7,18 +7,30 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { ProductsPage } from "./pages/ProductsPage";
 import { useState } from "react";
 import { EmptyCart } from "./components/emptyCart/EmptyCart";
+import { ICart } from "./models";
 
 
 
 function App() {
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState<ICart[]>([]);
+
+    const addToCart = ({ id, title, price, image }: ICart) => {
+        setCart(prev => {
+            return [...prev, {
+                id,
+                title,
+                price,
+                image,
+            }]
+        })
+    }
     return (
         <>
-            <Navigtion />
+            <Navigtion cart={cart}/>
             <Routes>
-                <Route path="/" element={<ProductsPage />} />
+                <Route path="/" element={<ProductsPage addToCart={addToCart}/>} />
                 <Route path="/about" element={<AboutPage />} />
-                <Route path="/cart" element={cart.length > 0 ? <Cart /> : <EmptyCart />} />
+                <Route path="/cart" element={cart.length > 0 ? <Cart cart={cart} /> : <EmptyCart />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>

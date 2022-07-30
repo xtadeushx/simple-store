@@ -10,7 +10,15 @@ import { useProducts } from '../hooks/products';
 import { IProduct } from '../models';
 import Login from '../components/login/Login';
 
-const ProductsPage = () => {
+interface ProductsPageProps {
+  addToCart: (data: IProduct) => void;
+}
+
+
+
+
+
+const ProductsPage = ({addToCart}:ProductsPageProps) => {
   const { products, loading, error, addProduct, changeCategory, changeSort, changeLimit } = useProducts();
   const { modal, open, close } = useContext(ModalContext)
   const onCreate = (data: IProduct) => {
@@ -23,7 +31,7 @@ const ProductsPage = () => {
       <div className="container mx-auto max-w-4xl pt-5 grid grid-cols-2 gap-10" >
         {loading && <Loader />}
         {error && <ErrorMessage error={error} />}
-        {products.map(product => <Product key={product.id} product={product} />)}
+        {products.map(product => <Product key={product.id} product={product} addToCart={addToCart} />)}
 
         {modal && <Modal title='Create new product' onClose={close}>
           <CreateProduct onCreate={onCreate} />

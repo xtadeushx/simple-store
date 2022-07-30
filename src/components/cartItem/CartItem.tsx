@@ -2,19 +2,23 @@ import React from 'react'
 import { products } from '../../data/products';
 import './cartItem.css'
 import { FaPlusCircle,FaMinusCircle,FaTrashAlt} from 'react-icons/fa'
+import { ICart } from '../../models';
 
+interface CartItemProps{
+  title: string;
+  price: number;
+  image: string;
+}
 
-
-
-const CartItem = () => {
+const CartItem = ({title, price, image}:CartItemProps) => {
     return (
         <>
           <div className="cart__item">
             <div className="cart__item-img">
-              <img className="pizza-block__image" src='https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg' alt="Pizza" />
+              <img className="pizza-block__image" src={image} alt="clothe" />
             </div>
             <div className="cart__item-info">
-              <h4>{products[0].title}</h4>
+              <h4>{title}</h4>
              
             </div>
             <div className="cart__item-count">
@@ -25,7 +29,7 @@ const CartItem = () => {
             </div>
             <div className="cart__item-price">
               <b>
-              {products[0].price}
+              {price} ₴
               </b>
             </div>
             <div className="cart__item-remove">
