@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+
+
+
 import CartItem from '../components/cartItem/CartItem';
 import './cart.css'
 const Cart = () => {
@@ -77,7 +80,7 @@ const Cart = () => {
                   </svg>
     
                   <span >
-                    'Очистити кошик' 
+                    Очистити кошик 
                   </span>
                 </div>
               </div>
@@ -93,13 +96,13 @@ const Cart = () => {
                 <div className="cart__bottom-details">
                   <span>
                     {' '}
-                     'Усього товарів:' <b> 0 шт.</b>{' '}
+                     Усього товарів: <b> 4 шт.</b>{' '}
                   </span>
                   <span>
                     {' '}
-                    'Сума замовлення:'
+                    Сума замовлення:
                     <b>
-                      totalBill
+                      100 $
                     </b>{' '}
                   </span>
                 </div>
@@ -120,10 +123,10 @@ const Cart = () => {
                       />
                     </svg>
     
-                    <span>{'Повернутись назад'}</span>
+                    <span>Повернутись назад</span>
                   </Link>
                   <div className="button pay-btn">
-                    <span>{ 'Оплатити зараз'}</span>
+                    <button>Оплатити зараз</button>
                   </div>
                 </div>
               </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IProduct } from '../models';
+import { FaShoppingBag } from 'react-icons/fa'
 
 interface ProductProps {
     product: IProduct;
@@ -34,7 +35,7 @@ const Product = ({ product }: ProductProps) => {
              <button
                 className={`py-1 px-2 border rounded-md ${buttonClassName}`}
                 onClick={() => setDetails((prev) => !prev)}>
-                Add to cart
+                <FaShoppingBag/>
             </button>
             </div>
             
