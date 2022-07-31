@@ -13,9 +13,8 @@ import { ICart } from "./models";
 
 function App() {
     const [cart, setCart] = useState<ICart[]>([]);
-console.log(cart);
-    const addToCart = ({ id, title, price, image }: ICart) => {
 
+    const addToCart = ({ id, title, price, image }: ICart) => {
         if (cart.findIndex(el => el.id === id) !== -1) {
             let newCart = [...cart];
             newCart = newCart.map(el => {
@@ -38,12 +37,29 @@ console.log(cart);
         });
     }
 
+    const plusQuantity = (id: number) => {
+        setCart(prev => prev.map(el => {
+            if (el.id === id) {
+                el.quantity = el.quantity + 1;
+            }
+            return el;
+        }))
+    };
+    
+    const minusQuantity = (id: number) => {
+        setCart(prev => prev.map(el => {
+            if (el.id === id) {
+                el.quantity = el.quantity - 1 <0 ? 0: el.quantity - 1;
+            }
+            return el;
+        }))
+    };
 
     const removeItemFromCart = (id: number) => {
-        console.log(id);
         return setCart(prev => prev.filter(el => el.id !== id));
     }
-    const removeAllItems = () => setCart([])
+
+    const removeAllItems = () => setCart([]);
 
 
 
@@ -53,7 +69,15 @@ console.log(cart);
             <Routes>
                 <Route path="/" element={<ProductsPage addToCart={addToCart} />} />
                 <Route path="/about" element={<AboutPage />} />
-                <Route path="/cart" element={cart.length > 0 ? <Cart cart={cart} removeItemFromCart={removeItemFromCart} removeAllItems={removeAllItems} /> : <EmptyCart />} />
+                <Route path="/cart" element={cart.length > 0
+                    ?
+                    <Cart cart={cart}
+                        removeItemFromCart={removeItemFromCart}
+                        removeAllItems={removeAllItems}
+                        plusQuantity={plusQuantity}
+                        minusQuantity={minusQuantity}
+                    />
+                    : <EmptyCart />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>

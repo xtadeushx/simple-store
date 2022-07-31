@@ -9,10 +9,12 @@ interface CartProps{
   cart: ICart[];
   removeItemFromCart:(id:number) => void;
   removeAllItems:() => void;
+  plusQuantity:(id:number) => void;
+  minusQuantity:(id:number) => void;
 }
 
 
-const Cart:FC<CartProps> = ({cart, removeItemFromCart,removeAllItems}) => {
+const Cart:FC<CartProps> = ({cart, removeItemFromCart,removeAllItems, plusQuantity, minusQuantity}) => {
 
 const totalSum = cart.reduce((acc,prev) => acc + prev.price * prev.quantity,0).toFixed(2);
 const allQuantity:number = +cart.reduce((acc,prev) => acc +  prev.quantity,0).toFixed();
@@ -101,7 +103,7 @@ const allQuantity:number = +cart.reduce((acc,prev) => acc +  prev.quantity,0).to
                 </div>
               </div>
               <div className="content__items">
-                {cart.map(item =><CartItem key={item.id} quantity={item.quantity} id={item.id} title={item.title} image={item.image} onclick={removeItemFromCart} price={item.price}/>)}
+                {cart.map(item =><CartItem key={item.id} minusQuantity={minusQuantity} plusQuantity={plusQuantity} quantity={item.quantity} id={item.id} title={item.title} image={item.image} onclick={removeItemFromCart} price={item.price}/>)}
                 
                
               </div>

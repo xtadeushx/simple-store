@@ -57,7 +57,7 @@ let cartLength = cart.length;
           </svg>
           <span className="absolute top-2 right-[11.2rem] text-[10px] rounded-full border  px-1 bg-white text-gray-600">{cartLength}</span>
         </Link>
-       <BsFillPersonFill className='text-[25px]' onClick={open}/>
+       <BsFillPersonFill className='text-[25px] hover:cursor-pointer' onClick={open}/>
         <Link to='/about'>About</Link>
       </span>
     </nav>

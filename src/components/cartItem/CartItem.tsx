@@ -11,9 +11,11 @@ interface CartItemProps{
   image: string;
   quantity: number;
   onclick:(id:number)=> void;
+  plusQuantity:(id:number)=> void;
+  minusQuantity:(id:number)=> void;
 }
 
-const CartItem = ({title, price, image,id=0,quantity, onclick}:CartItemProps) => {
+const CartItem = ({title, price, image,id=0,quantity, onclick, plusQuantity,minusQuantity}:CartItemProps) => {
     return (
         <>
           <div className="cart__item">
@@ -25,9 +27,9 @@ const CartItem = ({title, price, image,id=0,quantity, onclick}:CartItemProps) =>
              
             </div>
             <div className="cart__item-count">
-              <FaMinusCircle className='cursor-pointer text-lg'/>
+              <FaMinusCircle className='cursor-pointer text-lg'  onClick={()=>minusQuantity(id)}/>
               <b>{quantity}</b>
-              <FaPlusCircle className='cursor-pointer text-lg'/>
+              <FaPlusCircle className='cursor-pointer text-lg' onClick={()=>plusQuantity(id)}/>
              
             </div>
             <div className="cart__item-price">
