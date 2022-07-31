@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 import CartItem from '../../components/cartItem/CartItem';
@@ -7,10 +7,12 @@ import { ICart } from '../../models';
 import './cart.css'
 interface CartProps{
   cart: ICart[];
+  removeItemFromCart:(id:number) => void;
+  removeAllItems:() => void;
 }
 
 
-const Cart = ({cart}:CartProps) => {
+const Cart:FC<CartProps> = ({cart, removeItemFromCart,removeAllItems}) => {
 
 const totalSum = cart.map(el=> el.price).reduce((acc,prev) => acc + prev,0).toFixed(2);
 
@@ -58,7 +60,10 @@ const totalSum = cart.map(el=> el.price).reduce((acc,prev) => acc + prev,0).toFi
                     height="20"
                     viewBox="0 0 20 20"
                     fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
+                    xmlns="http://www.w3.org/2000/svg"
+                    onClick={removeAllItems}
+                    >
+                      
                     <path
                       d="M2.5 5H4.16667H17.5"
                       stroke="#B6B6B6"
@@ -95,7 +100,7 @@ const totalSum = cart.map(el=> el.price).reduce((acc,prev) => acc + prev,0).toFi
                 </div>
               </div>
               <div className="content__items">
-                {cart.map(item =><CartItem key={item.id} title={item.title} image={item.image} price={item.price}/>)}
+                {cart.map(item =><CartItem key={item.id} id={item.id} title={item.title} image={item.image} onclick={removeItemFromCart} price={item.price}/>)}
                 
                
               </div>

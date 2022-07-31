@@ -5,12 +5,14 @@ import { FaPlusCircle,FaMinusCircle,FaTrashAlt} from 'react-icons/fa'
 import { ICart } from '../../models';
 
 interface CartItemProps{
+  id:number|undefined;
   title: string;
   price: number;
   image: string;
+  onclick:(id:number)=> void;
 }
 
-const CartItem = ({title, price, image}:CartItemProps) => {
+const CartItem = ({title, price, image,id=0, onclick}:CartItemProps) => {
     return (
         <>
           <div className="cart__item">
@@ -33,7 +35,7 @@ const CartItem = ({title, price, image}:CartItemProps) => {
               </b>
             </div>
             <div className="cart__item-remove">
-             < FaTrashAlt className='cursor-pointer text-lg'/>
+             < FaTrashAlt className='cursor-pointer text-lg' onClick={()=>{onclick(id)}}/>
             </div>
           </div>
         </>

@@ -24,13 +24,21 @@ function App() {
             }]
         })
     }
+    const removeItemFromCart = (id: number) => {
+        console.log(id);
+        return setCart(prev => prev.filter(el => el.id !== id));
+    }
+    const removeAllItems = () => setCart([])
+
+
+
     return (
         <>
-            <Navigtion cart={cart}/>
+            <Navigtion cart={cart} />
             <Routes>
-                <Route path="/" element={<ProductsPage addToCart={addToCart}/>} />
+                <Route path="/" element={<ProductsPage addToCart={addToCart} />} />
                 <Route path="/about" element={<AboutPage />} />
-                <Route path="/cart" element={cart.length > 0 ? <Cart cart={cart} /> : <EmptyCart />} />
+                <Route path="/cart" element={cart.length > 0 ? <Cart cart={cart} removeItemFromCart={removeItemFromCart} removeAllItems={removeAllItems} /> : <EmptyCart />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>

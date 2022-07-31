@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { FC, useContext } from 'react'
 import { ModalContext } from '../components/context/ModalContext';
 import { CreateProduct } from '../components/CreateProduct';
 import ErrorMessage from '../components/ErrorMessage';
@@ -18,7 +18,7 @@ interface ProductsPageProps {
 
 
 
-const ProductsPage = ({addToCart}:ProductsPageProps) => {
+const ProductsPage:FC<ProductsPageProps>= ({addToCart}) => {
   const { products, loading, error, addProduct, changeCategory, changeSort, changeLimit } = useProducts();
   const { modal, open, close } = useContext(ModalContext)
   const onCreate = (data: IProduct) => {
