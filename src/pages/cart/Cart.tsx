@@ -14,7 +14,8 @@ interface CartProps{
 
 const Cart:FC<CartProps> = ({cart, removeItemFromCart,removeAllItems}) => {
 
-const totalSum = cart.map(el=> el.price).reduce((acc,prev) => acc + prev,0).toFixed(2);
+const totalSum = cart.reduce((acc,prev) => acc + prev.price * prev.quantity,0).toFixed(2);
+const allQuantity:number = +cart.reduce((acc,prev) => acc +  prev.quantity,0).toFixed();
 
 
 
@@ -54,14 +55,14 @@ const totalSum = cart.map(el=> el.price).reduce((acc,prev) => acc + prev,0).toFi
                   </svg>
                   Кошик
                 </h2>
-                <div className="cart__clear">
+                <div className="cart__clear"  onClick={removeAllItems}>
                   <svg
                     width="20"
                     height="20"
                     viewBox="0 0 20 20"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    onClick={removeAllItems}
+                   
                     >
                       
                     <path
@@ -100,14 +101,14 @@ const totalSum = cart.map(el=> el.price).reduce((acc,prev) => acc + prev,0).toFi
                 </div>
               </div>
               <div className="content__items">
-                {cart.map(item =><CartItem key={item.id} id={item.id} title={item.title} image={item.image} onclick={removeItemFromCart} price={item.price}/>)}
+                {cart.map(item =><CartItem key={item.id} quantity={item.quantity} id={item.id} title={item.title} image={item.image} onclick={removeItemFromCart} price={item.price}/>)}
                 
                
               </div>
               <div className="cart__bottom">
                 <div className="cart__bottom-details">
                   <span>
-                     Усього товарів: <b> {cart.length} шт.</b>{' '}
+                     Усього товарів: <b> {allQuantity} шт.</b>{' '}
                   </span>
                   <span>
                     Сума замовлення: <b> {totalSum} ₴</b>

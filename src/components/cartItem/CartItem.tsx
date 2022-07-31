@@ -9,10 +9,11 @@ interface CartItemProps{
   title: string;
   price: number;
   image: string;
+  quantity: number;
   onclick:(id:number)=> void;
 }
 
-const CartItem = ({title, price, image,id=0, onclick}:CartItemProps) => {
+const CartItem = ({title, price, image,id=0,quantity, onclick}:CartItemProps) => {
     return (
         <>
           <div className="cart__item">
@@ -25,13 +26,13 @@ const CartItem = ({title, price, image,id=0, onclick}:CartItemProps) => {
             </div>
             <div className="cart__item-count">
               <FaMinusCircle className='cursor-pointer text-lg'/>
-              <b>1</b>
+              <b>{quantity}</b>
               <FaPlusCircle className='cursor-pointer text-lg'/>
              
             </div>
             <div className="cart__item-price">
               <b>
-              {price} ₴
+              {price * quantity} ₴
               </b>
             </div>
             <div className="cart__item-remove">

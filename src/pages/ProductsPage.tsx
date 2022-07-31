@@ -11,12 +11,9 @@ import { IProduct } from '../models';
 import Login from '../components/login/Login';
 
 interface ProductsPageProps {
-  addToCart: (data: IProduct) => void;
+
+  addToCart: (data: any) => void;
 }
-
-
-
-
 
 const ProductsPage:FC<ProductsPageProps>= ({addToCart}) => {
   const { products, loading, error, addProduct, changeCategory, changeSort, changeLimit } = useProducts();

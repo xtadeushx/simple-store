@@ -12,8 +12,9 @@ export interface IProduct {
 }
 
 export interface ICart {
-  id?: number;
+  id: number;
   title: string;
   price: number;
   image: string;
+  quantity: number;
 }

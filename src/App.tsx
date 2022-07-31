@@ -13,17 +13,32 @@ import { ICart } from "./models";
 
 function App() {
     const [cart, setCart] = useState<ICart[]>([]);
-
+console.log(cart);
     const addToCart = ({ id, title, price, image }: ICart) => {
+
+        if (cart.findIndex(el => el.id === id) !== -1) {
+            let newCart = [...cart];
+            newCart = newCart.map(el => {
+                if (el.id === id) {
+                    el.quantity = el.quantity + 1;
+                }
+                return el;
+            });
+            return setCart(newCart);
+        }
+
         setCart(prev => {
             return [...prev, {
                 id,
                 title,
                 price,
                 image,
+                quantity: 1,
             }]
-        })
+        });
     }
+
+
     const removeItemFromCart = (id: number) => {
         console.log(id);
         return setCart(prev => prev.filter(el => el.id !== id));
